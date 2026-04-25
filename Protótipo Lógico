@@ -1,0 +1,16 @@
+# Protótipo Lógico: Escâner de Matéria - Módulo de Identificação
+def escanear_propriedades(material):
+    # Aqui simulamos a 'espiral' de análise do material
+    base_dados = {
+        "ferro": {"densidade": 7.8, "condutividade": "Alta", "origem": "Terrestre"},
+        "quartzo": {"densidade": 2.6, "condutividade": "Baixa", "origem": "Mineral"},
+        "desconhecido": {"densidade": 0.0, "condutividade": "Infinita", "origem": "Arcturiana"}
+    }
+    
+    resultado = base_dados.get(material.lower(), "Material não identificado no banco de dados local.")
+    return resultado
+
+# Teste do fluxo
+objeto = input("Aproxime o material para análise: ")
+print(f"Analisando frequências de {objeto}...")
+print(escanear_propriedades(objeto))
