@@ -26,3 +26,31 @@ def simular_leitura_sensor(valor_real):
 print(f"Lendo frequencias de {objeto}...")
 leitura_densidade = simular_leitura_sensor(base_dados[objeto]['densidade'])
 print(f"Hardware reporta Densidade: {leitura_densidade} g/cm3")
+
+# Protocolo de Segurança ATM - Filtro de Contaminantes
+def verificar_seguranca_ambiental(material_detectado):
+    # Lista de materiais que ativam o protocolo de risco
+    contaminantes_perigosos = {
+        "mercurio": "ALERTA: Metal pesado detectado. Risco de contaminação do lençol freático.",
+        "chumbo": "ALERTA: Alta toxicidade detectada. Solo impróprio para manuseio direto.",
+        "arsenio": "PERIGO CRÍTICO: Substância altamente letal identificada."
+    }
+
+    material_limpo = material_detectado.lower()
+
+    if material_limpo in contaminantes_perigosos:
+        print("\n" + "!" * 50)
+        print(contaminantes_perigosos[material_limpo])
+        print("SISTEMA TRAVADO: Operação interrompida para preservação ambiental.")
+        print("!" * 50 + "\n")
+        return False  # Bloqueia a operação
+    else:
+        print(f"\n[OK] Material '{material_detectado}' seguro para análise profunda.")
+        return True   # Autoriza a operação
+
+# --- Integração no Fluxo Principal ---
+objeto = input("Aproxime o material para análise: ")
+
+if verificar_seguranca_ambiental(objeto):
+    # Se for seguro, o sistema procede com a análise de densidade/condutividade
+    print(f"Analisando frequências de {objeto}...")
