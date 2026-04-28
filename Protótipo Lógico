@@ -14,3 +14,15 @@ def escanear_propriedades(material):
 objeto = input("Aproxime o material para análise: ")
 print(f"Analisando frequências de {objeto}...")
 print(escanear_propriedades(objeto))
+
+import random
+
+def simular_leitura_sensor(valor_real):
+    # Simula a oscilacao do hardware (ruido de 1%)
+    variacao = valor_real * 0.01
+    return round(valor_real + random.uniform(-variacao, variacao), 2)
+
+# No seu loop de teste:
+print(f"Lendo frequencias de {objeto}...")
+leitura_densidade = simular_leitura_sensor(base_dados[objeto]['densidade'])
+print(f"Hardware reporta Densidade: {leitura_densidade} g/cm3")
